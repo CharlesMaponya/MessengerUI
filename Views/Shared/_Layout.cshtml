@@ -10,41 +10,69 @@
     <link href="~/css/template.dark.min.css" rel="stylesheet" media="(prefers-color-scheme: dark)">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/images/brand.svg" class="mx-auto fill-primary" data-inject-svg="" alt="" style="height: 46px;">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <div class="layout">
+        <!-- Navbar -->
+        <div class="navigation navbar navbar-light py-lg-7">
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - MessengerUI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <!-- Brand -->
+            <a href="#" class="d-none d-lg-block">
+                <img src="~/images/brand.svg" class="mx-auto fill-primary" data-inject-svg="" alt="" style="height: 46px;">
+            </a>
+
+            <!-- Menu -->
+            <ul class="nav navbar-nav flex-row flex-lg-column flex-grow-1 justify-content-between py-2 py-lg-0" role="tablist">
+
+                <!-- Chats -->
+                <li class="nav-item mt-lg-8 flex-lg-grow-1">
+                    <a class="nav-link position-relative p-0 py-2 active" data-toggle="tab" href="#tab-content-dialogs" title="Chats" role="tab">
+                        <i class="icon-lg fe-message-square"></i>
+                        <div class="badge badge-dot badge-primary badge-bottom-center"></div>
+                    </a>
+                </li>
+
+                <!-- Create group -->
+                <li class="nav-item mt-lg-8">
+                    <a class="nav-link position-relative p-0 py-2" data-toggle="tab" href="#tab-content-create-chat" title="Create chat" role="tab">
+                        <i class="icon-lg fe-edit"></i>
+                    </a>
+                </li>
+
+                <!-- Friend -->
+                <li class="nav-item mt-lg-8">
+                    <a class="nav-link position-relative p-0 py-2" data-toggle="tab" href="#tab-content-friends" title="Friends" role="tab">
+                        <i class="icon-lg fe-users"></i>
+                    </a>
+                </li>
+                <!-- Settings -->
+                <li class="nav-item mt-lg-8">
+                    <a class="nav-link position-relative p-0 py-2" data-toggle="tab" href="#tab-content-settings" title="Settings" role="tab">
+                        <i class="icon-lg fe-settings"></i>
+                    </a>
+                </li>
+
+                <!-- Profile: Hidden on lg -->
+                <li class="nav-item mt-lg-8 d-block d-lg-none">
+                    <a class="nav-link position-relative p-0 py-2" data-toggle="tab" href="#tab-content-user" title="User" role="tab">
+                        <i class="icon-lg fe-user"></i>
+                    </a>
+                </li>
+
+                <!-- Profile: Hidden on sm -->
+                <li class="nav-item mt-lg-8 d-none d-lg-block">
+                    <a class="nav-link position-relative p-0 py-2" data-toggle="tab" href="#tab-content-user" title="User" role="tab">
+                        <div class="avatar avatar-sm avatar-online mx-auto">
+                            <img class="avatar-img" src="~/images/avatars/12.jpg" alt="">
+                        </div>
+                    </a>
+                </li>
+
+            </ul>
+            <!-- Menu -->
         </div>
-    </footer>
+        <!-- Navbar -->
+        @RenderBody()
+    </div>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/plugins.bundle.js" asp-append-version="true"></script>
