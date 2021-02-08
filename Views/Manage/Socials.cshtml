@@ -1,0 +1,183 @@
+﻿@model MessengerUI.Models.SocialsViewModel
+
+@{
+    ViewData["Title"] = "Socials";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="sidebar">
+    <div class="tab-content h-100" role="tablist">
+        <div class="tab-pane fade h-100 show active" id="tab-content-settings" role="tabpanel">
+            <div class="d-flex flex-column h-100">
+
+                <div class="hide-scrollbar">
+                    <div class="container-fluid py-6">
+
+                        <!-- Title -->
+                        <h2 class="font-bold mb-6">Settings</h2>
+                        <!-- Title -->
+                        <!-- Accordion -->
+                        <div class="accordion mb-n6" id="profile-settings">
+                            <!-- Card -->
+                            <div class="card mb-6">
+                                <div class="card-header position-relative">
+                                    <a asp-action="Index" asp-controller="Manage" class="text-reset d-block stretched-link collapsed">
+                                        <div class="row no-gutters align-items-center">
+                                            <!-- Title -->
+                                            <div class="col">
+                                                <h5>Account</h5>
+                                                <p>Update your profile details.</p>
+                                            </div>
+
+                                            <!-- Icon -->
+                                            <div class="col-auto">
+                                                <i class="text-muted icon-md fe-user"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <!-- Card -->
+                            <!-- Card -->
+                            <div class="card mb-6">
+                                <div class="card-header position-relative">
+                                    <a asp-action="Security" asp-controller="Manage" class="text-reset d-block stretched-link collapsed" aria-expanded="true" aria-controls="profile-settings-security">
+                                        <div class="row no-gutters align-items-center">
+                                            <!-- Title -->
+                                            <div class="col">
+                                                <h5>Security</h5>
+                                                <p>Update your profile details.</p>
+                                            </div>
+
+                                            <!-- Icon -->
+                                            <div class="col-auto">
+                                                <i class="text-muted icon-md fe-shield"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <!-- Card -->
+                            <!-- Card -->
+                            <div class="card mb-6">
+                                <div class="card-header position-relative">
+                                    <a href="#" class="text-reset d-block stretched-link collapsed" data-toggle="collapse" data-target="#profile-settings-social" aria-controls="profile-settings-social" aria-expanded="true">
+                                        <div class="row no-gutters align-items-center">
+                                            <!-- Title -->
+                                            <div class="col">
+                                                <h5>Social</h5>
+                                                <p>Update your profile details.</p>
+                                            </div>
+
+                                            <!-- Icon -->
+                                            <div class="col-auto">
+                                                <i class="text-muted icon-md fe-share-2"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div id="profile-settings-social" class="collapse" data-parent="#profile-settings">
+                                    <div class="card-body">
+
+                                        <form asp-action="Socials" asp-controller="Manage">
+                                            <div asp-validation-summary="All" class="text-danger"></div>
+                                            <!-- Twitter -->
+                                            <div class="form-group">
+                                                <label class="small" asp-for="TwitterUrl"></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="btn btn-ico btn-secondary btn-minimal">
+                                                            <i class="fe-twitter"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input asp-for="TwitterUrl" class="form-control" placeholder="Twitter profile Link" aria-label="Username" />
+                                                </div>
+                                            </div>
+
+                                            <!-- Facebook -->
+                                            <div class="form-group">
+                                                <label class="small" asp-for="FbUrl"></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="btn btn-ico btn-secondary btn-minimal">
+                                                            <i class="fe-facebook"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input asp-for="FbUrl" class="form-control" placeholder="Facebook profile Link" aria-label="Username" />
+                                                </div>
+                                            </div>
+
+                                            <!-- Instagram -->
+                                            <div class="form-group">
+                                                <label class="small" asp-for="LinkedInUrl"></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="btn btn-ico btn-secondary btn-minimal">
+                                                            <i class="fe-linkedin"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input asp-for="LinkedInUrl" class="form-control" placeholder="LinkedIn profile Link" aria-label="Username" />
+                                                </div>
+                                            </div>
+
+                                            <!-- Github -->
+                                            <div class="form-group">
+                                                <label class="small" asp-for="GithubUrl"></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="btn btn-ico btn-secondary btn-minimal">
+                                                            <i class="fe-github"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input asp-for="GithubUrl" class="form-control" placeholder="Github profile Link" aria-label="Username" />
+                                                </div>
+                                            </div>
+
+                                            <button class="btn btn-primary btn-block" type="submit">Save Preferences</button>
+                                        </form>
+                                    </div>
+                                </div><!-- .collapse -->
+
+                            </div>
+                            <!-- Card -->
+                            <!-- Card -->
+                            <div class="card mb-6">
+                                <div class="card-header position-relative">
+                                    <a asp-action="Avator" asp-controller="Manage" class="text-reset d-block stretched-link collapsed" aria-controls="profile-settings-social" aria-expanded="true">
+                                        <div class="row no-gutters align-items-center">
+                                            <!-- Title -->
+                                            <div class="col">
+                                                <h5>Avator</h5>
+                                                <p>Update your profile picture.</p>
+                                            </div>
+
+                                            <!-- Icon -->
+                                            <div class="col-auto">
+                                                <i class="text-muted icon-md fe-camera"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <!-- Card -->
+                        </div>
+                        <!-- Accordion -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+@await Component.InvokeAsync("ActiveUser") 

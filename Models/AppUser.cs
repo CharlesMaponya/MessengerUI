@@ -9,14 +9,22 @@ namespace MessengerUI.Models
 {
     public class AppUser : IdentityUser
     {
-        [Required]
         public string Name { get; set; }
 
-        [Required]
         public string Surname { get; set; }
 
-        [Required]
+        public string Bio { get; set; }
+
+        public string Country { get; set; }
+
         public string ImageUrl { get; set; }
+
+        public string FbUrl { get; set; }
+        public string TwitterUrl { get; set; }
+
+        public string LinkedInUrl { get; set; }
+
+        public string GithubUrl { get; set; }
 
         public virtual ICollection<Text> TextsSent { get; set; }
 

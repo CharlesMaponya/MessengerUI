@@ -1,0 +1,151 @@
+﻿@model MessengerUI.Models.AvatorViewModel
+
+@{
+    ViewData["Title"] = "Profile Avator";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="sidebar">
+    <div class="tab-content h-100" role="tablist">
+        <div class="tab-pane fade h-100 show active" id="tab-content-settings" role="tabpanel">
+            <div class="d-flex flex-column h-100">
+
+                <div class="hide-scrollbar">
+                    <div class="container-fluid py-6">
+
+                        <!-- Title -->
+                        <h2 class="font-bold mb-6">Settings</h2>
+                        <!-- Title -->
+                        <!-- Accordion -->
+                        <div class="accordion mb-n6" id="profile-settings">
+                            <!-- Card -->
+                            <div class="card mb-6">
+                                <div class="card-header position-relative">
+                                    <a asp-action="Index" asp-controller="Manage" class="text-reset d-block stretched-link collapsed">
+                                        <div class="row no-gutters align-items-center">
+                                            <!-- Title -->
+                                            <div class="col">
+                                                <h5>Account</h5>
+                                                <p>Update your profile details.</p>
+                                            </div>
+
+                                            <!-- Icon -->
+                                            <div class="col-auto">
+                                                <i class="text-muted icon-md fe-user"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <!-- Card -->
+                            <!-- Card -->
+                            <div class="card mb-6">
+                                <div class="card-header position-relative">
+                                    <a asp-action="Security" asp-controller="Manage" class="text-reset d-block stretched-link collapsed" aria-expanded="true" aria-controls="profile-settings-security">
+                                        <div class="row no-gutters align-items-center">
+                                            <!-- Title -->
+                                            <div class="col">
+                                                <h5>Security</h5>
+                                                <p>Update your profile details.</p>
+                                            </div>
+
+                                            <!-- Icon -->
+                                            <div class="col-auto">
+                                                <i class="text-muted icon-md fe-shield"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <!-- Card -->
+                            <!-- Card -->
+                            <div class="card mb-6">
+                                <div class="card-header position-relative">
+                                    <a asp-action="Socials" asp-controller="Manage" class="text-reset d-block stretched-link collapsed" aria-controls="profile-settings-social" aria-expanded="true">
+                                        <div class="row no-gutters align-items-center">
+                                            <!-- Title -->
+                                            <div class="col">
+                                                <h5>Social</h5>
+                                                <p>Update your profile details.</p>
+                                            </div>
+
+                                            <!-- Icon -->
+                                            <div class="col-auto">
+                                                <i class="text-muted icon-md fe-share-2"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+
+                            </div>
+                            <!-- Card -->
+                            <!-- Card -->
+                            <div class="card mb-6">
+                                <div class="card-header position-relative">
+                                    <a href="#" class="text-reset d-block stretched-link collapsed" data-toggle="collapse" data-target="#avator-settings" aria-controls="avator-settings" aria-expanded="true">
+                                        <div class="row no-gutters align-items-center">
+                                            <!-- Title -->
+                                            <div class="col">
+                                                <h5>Avator</h5>
+                                                <p>Update your profile picture.</p>
+                                            </div>
+
+                                            <!-- Icon -->
+                                            <div class="col-auto">
+                                                <i class="text-muted icon-md fe-camera"></i>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+                                <div id="avator-settings" class="collapse" data-parent="#profile-settings">
+                                    <div class="card-body">
+
+                                        <form asp-action="Avator" asp-controller="Manage" enctype="multipart/form-data">
+                                            <div asp-validation-summary="All" class="text-danger"></div>
+                                            <!-- Avatar -->
+                                            <div class="form-group">
+                                                <label class="small">Avatar</label>
+                                                <div class="bg-secondary rounded p-6">
+                                                    <div class="media">
+                                                        <div class="avatar bg-primary text-white mr-5">
+                                                            <span>@User.Identity.Name.Substring(0,1).ToUpper()</span>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <label class="btn btn-sm btn-primary mb-3">
+                                                                Upload photo
+                                                                <input type="file" asp-for="Avator" class="d-none" accept="image/*" />
+                                                            </label>
+                                                            <p class="small text-muted">You can upload jpg, gif or png image files. Max file size 3mb.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <button class="btn btn-primary btn-block" type="submit">Save Preferences</button>
+                                        </form>
+
+                                    </div>
+                                </div><!-- .collapse -->
+                            </div>
+                            <!-- Card -->
+                        </div>
+                        <!-- Accordion -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+@await Component.InvokeAsync("ActiveUser")

@@ -1,0 +1,75 @@
+﻿@model MessengerUI.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Sign Up";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<div class="container d-flex flex-column">
+    <div class="row align-items-center justify-content-center no-gutters min-vh-100">
+
+        <div class="col-12 col-md-5 col-lg-4 py-8 py-md-11">
+
+            <!-- Heading -->
+            <h1 class="font-bold text-center">@ViewData["Title"]</h1>
+
+            <!-- Text -->
+            <p class="text-center mb-6">Welcome to the official MessengerUI Chat web-client.</p>
+
+            <!-- Form -->
+            <form class="mb-6" asp-action="Register" asp-controller="Account" asp-route-returnUrl="@ViewData["returnUrl"]">
+                <div class="text-danger" asp-validation-summary="All"></div>
+                <!-- Name -->
+                <div class="form-group">
+                    <label asp-for="Name" class="sr-only"></label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter your name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <!-- Surname -->
+                <div class="form-group">
+                    <label asp-for="Surname" class="sr-only"></label>
+                    <input asp-for="Surname" class="form-control" placeholder="Enter your Surname" />
+                    <span asp-validation-for="Surname" class="text-danger"></span>
+                </div>
+                <!-- Email -->
+                <div class="form-group">
+                    <label asp-for="Email" class="sr-only"></label>
+                    <input asp-for="Email" class="form-control" id="email" placeholder="Enter your email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <!-- Phone -->
+                <div class="form-group">
+                    <label asp-for="Phone" class="sr-only"></label>
+                    <input asp-for="Phone" class="form-control" id="email" placeholder="Enter your Phone number" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label asp-for="Password" class="sr-only"></label>
+                    <input asp-for="Password" class="form-control" id="password" placeholder="Enter your password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <!-- Password -->
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword" class="sr-only"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" id="password" placeholder="Enter your password" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                <!-- Submit -->
+                <button class="btn btn-block btn-primary" type="submit">Sign up</button>
+            </form>
+
+            <!-- Text -->
+            <p class="text-center">
+                Already have an account? <<a asp-action="Login" asp-controller="Account" asp-route-returnUrl="@ViewData["returnUrl"]">Sign in</a>.
+            </p>
+
+        </div>
+    </div> <!-- / .row -->
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

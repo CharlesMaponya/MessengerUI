@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace MessengerUI.Components
 {
-    public class ActiveUserComponent : ViewComponent
+    public class ActiveUserViewComponent : ViewComponent
 
     {
         private readonly UserManager<AppUser> _userManager;
 
-        public ActiveUserComponent(UserManager<AppUser> userManager)
+        public ActiveUserViewComponent(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
         }

@@ -1,0 +1,146 @@
+﻿@model MessengerUI.Models.SecurityViewModel
+
+@{
+    ViewData["Title"] = "Security";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="sidebar">
+    <div class="tab-content h-100" role="tablist">
+        <div class="tab-pane fade h-100 show active" id="tab-content-settings" role="tabpanel">
+            <div class="d-flex flex-column h-100">
+
+                <div class="hide-scrollbar">
+                    <div class="container-fluid py-6">
+
+                        <!-- Title -->
+                        <h2 class="font-bold mb-6">Settings</h2>
+                        <!-- Title -->
+                        <!-- Accordion -->
+                        <div class="accordion mb-n6" id="profile-settings">
+                            <!-- Card -->
+                            <div class="card mb-6">
+                                <div class="card-header position-relative">
+                                    <a asp-action="Index" asp-controller="Manage" class="text-reset d-block stretched-link collapsed">
+                                        <div class="row no-gutters align-items-center">
+                                            <!-- Title -->
+                                            <div class="col">
+                                                <h5>Account</h5>
+                                                <p>Update your profile details.</p>
+                                            </div>
+
+                                            <!-- Icon -->
+                                            <div class="col-auto">
+                                                <i class="text-muted icon-md fe-user"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <!-- Card -->
+                            <!-- Card -->
+                            <div class="card mb-6">
+                                <div class="card-header position-relative">
+                                    <a class="text-reset d-block stretched-link collapsed" data-toggle="collapse" data-target="#profile-settings-security" aria-expanded="true" aria-controls="profile-settings-security">
+                                        <div class="row no-gutters align-items-center">
+                                            <!-- Title -->
+                                            <div class="col">
+                                                <h5>Security</h5>
+                                                <p>Update your profile details.</p>
+                                            </div>
+
+                                            <!-- Icon -->
+                                            <div class="col-auto">
+                                                <i class="text-muted icon-md fe-shield"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div id="profile-settings-security" class="collapse" data-parent="#profile-settings">
+                                    <div class="card-body">
+                                        <form asp-action="Security" asp-controller="Manage">
+                                            <div class="form-group">
+                                                <label class="small" asp-for="OldPassword"></label>
+                                                <input asp-for="OldPassword" class="form-control" placeholder="Current Password" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="small" asp-for="NewPassword"></label>
+                                                <input asp-for="NewPassword" class="form-control" placeholder="New Password" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="small" asp-for="ConfirmPassword"></label>
+                                                <input asp-for="ConfirmPassword" class="form-control" placeholder="Verify Password" />
+                                            </div>
+
+                                            <button class="btn btn-primary btn-block" type="submit">
+                                                Change Password
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div><!-- .collapse -->
+
+                            </div>
+                            <!-- Card -->
+                            <!-- Card -->
+                            <div class="card mb-6">
+                                <div class="card-header position-relative">
+                                    <a asp-action="Socials" asp-controller="Manage" class="text-reset d-block stretched-link collapsed"  aria-controls="profile-settings-social" aria-expanded="true">
+                                        <div class="row no-gutters align-items-center">
+                                            <!-- Title -->
+                                            <div class="col">
+                                                <h5>Social</h5>
+                                                <p>Update your profile details.</p>
+                                            </div>
+
+                                            <!-- Icon -->
+                                            <div class="col-auto">
+                                                <i class="text-muted icon-md fe-share-2"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <!-- Card -->
+                            <!-- Card -->
+                            <div class="card mb-6">
+                                <div class="card-header position-relative">
+                                    <a asp-action="Avator" asp-controller="Manage" class="text-reset d-block stretched-link collapsed" aria-controls="profile-settings-social" aria-expanded="true">
+                                        <div class="row no-gutters align-items-center">
+                                            <!-- Title -->
+                                            <div class="col">
+                                                <h5>Avator</h5>
+                                                <p>Update your profile picture.</p>
+                                            </div>
+
+                                            <!-- Icon -->
+                                            <div class="col-auto">
+                                                <i class="text-muted icon-md fe-camera"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <!-- Card -->
+                        </div>
+                        <!-- Accordion -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+@await Component.InvokeAsync("ActiveUser") 

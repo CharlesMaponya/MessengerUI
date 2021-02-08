@@ -3,7 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MessengerUI</title>
+    <title>@ViewData["Title"] - Messenger</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="author" content="Charles Maponya" />
+    <meta name="application-name" content="Messenger Chat." />
+    <link rel="icon" href="~/images/brand.svg" />
+    <link rel="apple-touch-icon" href="~/images/brand.svg" />
+    <link rel="apple-touch-startup-image" href="~/images/brand.svg" />
+    <link rel="logo" href="~/images/brand.svg" />
+    <link rel="shortcut icon" href="~/images/brand.svg" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/template.min.css" />
@@ -15,7 +23,7 @@
         <div class="navigation navbar navbar-light py-lg-7">
 
             <!-- Brand -->
-            <a href="#" class="d-none d-lg-block">
+            <a asp-action="Index" asp-controller="Messages" class="d-none d-lg-block">
                 <img src="~/images/brand.svg" class="mx-auto fill-primary" data-inject-svg="" alt="" style="height: 46px;">
             </a>
 
@@ -23,49 +31,30 @@
             <ul class="nav navbar-nav flex-row flex-lg-column flex-grow-1 justify-content-between py-2 py-lg-0" role="tablist">
 
                 <!-- Chats -->
-                <li class="nav-item mt-lg-8 flex-lg-grow-1">
-                    <a class="nav-link position-relative p-0 py-2 active" data-toggle="tab" href="#tab-content-dialogs" title="Chats" role="tab">
+                <li class="nav-item mt-lg-8 flex-lg-grow-1" is-active-route asp-controller="Messages">
+                    <a class="nav-link position-relative p-0 py-2" asp-action="Index" asp-controller="Messages" title="Chats" role="tab">
                         <i class="icon-lg fe-message-square"></i>
                         <div class="badge badge-dot badge-primary badge-bottom-center"></div>
                     </a>
                 </li>
-
-                <!-- Create group -->
-                <li class="nav-item mt-lg-8">
-                    <a class="nav-link position-relative p-0 py-2" data-toggle="tab" href="#tab-content-create-chat" title="Create chat" role="tab">
-                        <i class="icon-lg fe-edit"></i>
-                    </a>
-                </li>
-
-                <!-- Friend -->
-                <li class="nav-item mt-lg-8">
-                    <a class="nav-link position-relative p-0 py-2" data-toggle="tab" href="#tab-content-friends" title="Friends" role="tab">
-                        <i class="icon-lg fe-users"></i>
-                    </a>
-                </li>
-                <!-- Settings -->
-                <li class="nav-item mt-lg-8">
-                    <a class="nav-link position-relative p-0 py-2" data-toggle="tab" href="#tab-content-settings" title="Settings" role="tab">
-                        <i class="icon-lg fe-settings"></i>
-                    </a>
-                </li>
-
-                <!-- Profile: Hidden on lg -->
-                <li class="nav-item mt-lg-8 d-block d-lg-none">
-                    <a class="nav-link position-relative p-0 py-2" data-toggle="tab" href="#tab-content-user" title="User" role="tab">
+                <!-- Profile -->
+                <li class="nav-item mt-lg-8" is-active-route asp-controller="Manage" asp-action="Profile">
+                    <a class="nav-link position-relative p-0 py-2" asp-action="Profile" asp-controller="Manage" title="Profile" role="tab">
                         <i class="icon-lg fe-user"></i>
                     </a>
                 </li>
-
-                <!-- Profile: Hidden on sm -->
-                <li class="nav-item mt-lg-8 d-none d-lg-block">
-                    <a class="nav-link position-relative p-0 py-2" data-toggle="tab" href="#tab-content-user" title="User" role="tab">
-                        <div class="avatar avatar-sm avatar-online mx-auto">
-                            <img class="avatar-img" src="~/images/avatars/12.jpg" alt="">
-                        </div>
+                <!-- Settings -->
+                <li class="nav-item mt-lg-8" is-active-route asp-controller="Manage">
+                    <a class="nav-link position-relative p-0 py-2" asp-action="Index" asp-controller="Manage" title="Settings" role="tab">
+                        <i class="icon-lg fe-settings"></i>
                     </a>
                 </li>
-
+                <li class="nav-item mt-lg-8">
+                    <a class="nav-link position-relative p-0 py-2" asp-action="SignOut" asp-controller="Account" title="Log Out" role="tab">
+                        <i class="icon-lg fe-log-out"></i>
+                    </a>
+                </li>
+                <partial name="_LoginPartial" />
             </ul>
             <!-- Menu -->
         </div>

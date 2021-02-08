@@ -14,5 +14,9 @@ namespace MessengerUI.Models
         public string Surname { get; set; }
 
         public string Image { get; set; }
+
+        public DateTime DateSent { get; set; }
+
+        public string LastText { get; set; }
     }
 }

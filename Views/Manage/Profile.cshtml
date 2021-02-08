@@ -1,0 +1,140 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var fullname = Model.Name + " " + Model.Surname;
+}
+
+<div class="sidebar">
+    <div class="tab-content h-100" role="tablist">
+        <div class="tab-pane fade h-100 show active" id="tab-content-user" role="tabpanel">
+            <div class="d-flex flex-column h-100">
+                <div class="hide-scrollbar">
+                    <div class="container-fluid py-6">
+                        <!-- Title -->
+                        <h2 class="font-bold mb-6">Profile</h2>
+                        <!-- Title -->
+                        <!-- Card -->
+                        <div class="card mb-6">
+                            <div class="card-body">
+                                <div class="text-center py-6">
+                                    <!-- Photo -->
+                                    <div class="avatar avatar-xl mb-5">
+                                        @if (!String.IsNullOrWhiteSpace(Model.Image))
+                                        {
+                                            var av = $"/api/Images/{Model.Image}";
+                                            <img class="avatar-img" src="@av" alt="" />
+                                        }
+                                        else
+                                        {
+                                            <img class="avatar-img" src="~/images/avatars/11.jpg" alt="" />
+                                        }
+                                    </div>
+
+                                    <h5>@fullname</h5>
+                                    <p class="text-muted">@Model.Bio</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                        <!-- Card -->
+                        <div class="card mb-6">
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item px-0 py-6">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <p class="small text-muted mb-0">Country</p>
+                                                <p>@Model.Country</p>
+                                            </div>
+                                            <i class="text-muted icon-sm fe-globe"></i>
+                                        </div>
+                                    </li>
+
+                                    <li class="list-group-item px-0 py-6">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <p class="small text-muted mb-0">Phone</p>
+                                                <p>@Model.Phone</p>
+                                            </div>
+                                            <i class="text-muted icon-sm fe-mic"></i>
+                                        </div>
+                                    </li>
+
+                                    <li class="list-group-item px-0 py-6">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <p class="small text-muted mb-0">Email</p>
+                                                <p>@Model.Email</p>
+                                            </div>
+                                            <i class="text-muted icon-sm fe-mail"></i>
+                                        </div>
+                                    </li>
+
+                                    <li class="list-group-item px-0 py-6">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <p class="small text-muted mb-0">Time</p>
+                                                <p>@DateTime.Now.ToShortTimeString()</p>
+                                            </div>
+                                            <i class="text-muted icon-sm fe-clock"></i>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                        <!-- Card -->
+                        <div class="card mb-6">
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item px-0 py-6">
+                                        <a href="@Model.Twitter" target="_blank" class="media text-muted">
+                                            <div class="media-body align-self-center">
+                                                Twitter
+                                            </div>
+                                            <i class="icon-sm fe-twitter"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="list-group-item px-0 py-6">
+                                        <a href="@Model.Facebook" target="_blank" class="media text-muted">
+                                            <div class="media-body align-self-center">
+                                                Facebook
+                                            </div>
+                                            <i class="icon-sm fe-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item px-0 py-6">
+                                        <a href="@Model.LinkedIn" target="_blank" class="media text-muted">
+                                            <div class="media-body align-self-center">
+                                                LinkedIn
+                                            </div>
+                                            <i class="icon-sm fe-linkedin"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item px-0 py-6">
+                                        <a href="@Model.Github" class="media text-muted">
+                                            <div class="media-body align-self-center">
+                                                Github
+                                            </div>
+                                            <i class="icon-sm fe-github"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                        <!-- Button -->
+                        <a asp-action="SignOut" asp-controller="Account" class="btn btn-block btn-secondary d-flex align-items-center">
+                            Logout
+                            <span class="fe-log-out ml-auto"></span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@await Component.InvokeAsync("ActiveUser") 

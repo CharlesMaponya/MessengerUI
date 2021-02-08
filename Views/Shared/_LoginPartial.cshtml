@@ -1,26 +1,27 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 
-<ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+    var user = UserManager.GetUserAsync(User).GetAwaiter().GetResult();
+    <!-- Profile: Hidden on sm -->
+    <li class="nav-item mt-lg-8 d-none d-lg-block">
+        <a class="nav-link position-relative p-0 py-2" is-active-route asp-action="Index" asp-controller="Manage" title="User" role="tab">
+            <div class="avatar avatar-sm avatar-online mx-auto">
+                @if (!String.IsNullOrWhiteSpace(user.ImageUrl))
+                {
+                    var avatar = $"/api/Images/{user.ImageUrl}";
+
+                    <img class="avatar-img" src="@avatar" alt=" @user.Name avatar" />
+                }
+                else
+                {
+                    <img class="avatar-img" src="~/images/avatars/11.jpg" alt="default avatar" />
+                }
+            </div>
+        </a>
     </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
+
 }
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
-</ul>
+

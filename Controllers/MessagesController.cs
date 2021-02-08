@@ -4,12 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using MessengerUI.Data;
 using MessengerUI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PagedList.Core;
 
 namespace MessengerUI.Controllers
 {
+    [Authorize]
     public class MessagesController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -25,16 +28,20 @@ namespace MessengerUI.Controllers
         public IActionResult Index(int? page=1)
         {
             var pageNumber = page == null || page <= 0 ? 1 : page.Value;
-            var users = _userManager.Users.Select(user => new UsersIndexModel {
-                UserId= user.Id,
-                Name=user.Name,
+            var users = _userManager.Users.Include(x => x.TextsRecieved).Select(user => new UsersIndexModel
+            {
+                UserId = user.Id,
+                Name = user.Name,
                 Surname = user.Surname,
-                Image = user.ImageUrl
-            });
+                Image = user.ImageUrl,
+                //The next 2 lines are buggy. I wanted to get the last text and the date it was sent.
+                //DateSent = user.TextsRecieved.ToList().LastOrDefault().MessageSent,
+                //LastText = user.TextsRecieved.ToList().LastOrDefault().Message
+            }).OrderBy(z => z.Name);
 
             var model = new UsersViewModel
             {
-                Users = new PagedList<UsersIndexModel>(users, pageNumber, 12)
+                Users = new PagedList<UsersIndexModel>(users, pageNumber, 150)
             };
             return View(model);
         }
@@ -77,6 +84,29 @@ namespace MessengerUI.Controllers
             await _dbContext.SaveChangesAsync();
 
             return RedirectToAction(nameof(Conversation), new { recipientId = RecipientId });
+        }
+
+        [HttpGet]
+        public IActionResult Search([FromQuery] string search, [FromQuery] int? page)
+        {
+            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
+            var users = _userManager.Users.Where(x => x.Name.Contains(search) || 
+            x.Surname.Contains(search) || 
+            x.Email.Contains(search)
+             || x.UserName.Contains(search)).Select(user => new UsersIndexModel
+             {
+                 UserId = user.Id,
+                 Name = user.Name,
+                 Surname = user.Surname,
+                 Image = user.ImageUrl,
+             }).OrderBy(c=>c.Name);
+
+            var model = new UsersViewModel
+            {
+                Search = search,
+                Users = new PagedList<UsersIndexModel>(users, pageNumber, 150)
+            };
+            return View(model);
         }
     }
 }
